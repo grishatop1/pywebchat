@@ -8,6 +8,24 @@ class Api:
         self.window = None
         self.client = None
 
+    def createConnection(self, data):
+        addr, username = data["addr"], data["username"]
+        try:
+            ip, port = addr.split(":")
+            port = int(port)
+        except:
+            return "IP address is invalid"
+
+        if not username:
+            return "Username can not be empty"
+
+        self.client = Client((ip,port), self, username)
+        result = self.client.connect()
+        if result == True:
+            return "success"
+        else:
+            return result
+
     def addMessage(self, content, mine, date, sender):
         js = fr"""
         
@@ -20,23 +38,7 @@ class Api:
         self.client.sendMessage(content)
 
 if __name__ == "__main__":
-    username = input("Enter your username: ")
-    if not username:
-        username = f"tester{random.randint(0,9999999)}"
-    addr = input("Enter IP address: ")
-    if not addr:
-        addr = "192.168.0.33:25565"
-
-    ip, port = addr.split(":")
-    port = int(port)
-
     api = Api()
-    client = Client((ip,port), api, username)
-    print("Connecting...")
-    client.connect()
-    print("Connected!")
-
     window = webview.create_window('Chat', "assets/index.html", width=1270, height=720, js_api=api, min_size=(300, 400))
     api.window = window
-    api.client = client
-    webview.start(debug=True)
+    webview.start()

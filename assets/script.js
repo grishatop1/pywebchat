@@ -1,14 +1,16 @@
-var input = document.getElementById("msg-txt");
-input.addEventListener("keydown", ({key}) => {
-    if (key === "Enter") {
-        sendMessage(getValueFromInput())
-    }
-});
+function whenConnected() {
+    var input = document.getElementById("msg-txt");
+    input.addEventListener("keydown", ({key}) => {
+        if (key === "Enter") {
+            sendMessage(getValueFromInput())
+        }
+    });
 
-var sndbtn = document.getElementById("snd-btn");
-sndbtn.addEventListener("click", function(){
-    sendMessage(getValueFromInput())
-});
+    var sndbtn = document.getElementById("snd-btn");
+    sndbtn.addEventListener("click", function(){
+        sendMessage(getValueFromInput())
+    });
+}
 
 function getValueFromInput(clear=true) {
     msg = document.getElementById("msg-txt");
@@ -47,4 +49,54 @@ function addMessage(message, mine, date, sender="") {
 
 function isEmpty(str) {
     return (!str || 0 === str.length);
+}
+
+async function connect() {
+    showLoading();
+    var username_node = document.getElementById("username");
+    var ip_node = document.getElementById("ip");
+
+    const username = username_node.value;
+    const ip = ip_node.value;
+
+    pywebview.api.createConnection({"addr": ip, "username": username}).then(function(response){
+        if (response == "success") {
+            hideLoading();
+            hideLogin();
+            whenConnected();
+        } else {
+            showAlertMessage(response);
+            hideLoading();
+        }
+    });
+}
+
+function showLoading() {
+    var loading = document.getElementsByClassName("loading")[0];
+    loading.style.display = "flex";
+    
+    window.setTimeout(function() {
+        loading.style.opacity = 1;
+    }, 100);
+}
+
+function hideLoading() {
+    window.setTimeout(function() {
+        var loading = document.getElementsByClassName("loading")[0];
+        loading.style.opacity = 0;
+        window.setTimeout(function() {
+            loading.style.display = "none";
+        }, 1000);
+    }, 1000);
+}
+
+function hideLogin() {
+    window.setTimeout(function() {
+        var login_node = document.getElementsByClassName("login")[0];
+        login_node.style.display = "none";
+    }, 1000);
+}
+
+async function sendMessage(msg) {
+    pywebview.api.sendMessage(msg)
 }
