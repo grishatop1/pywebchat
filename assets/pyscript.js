@@ -8,6 +8,6 @@ window.addEventListener("pywebviewready", function() {
     }, 2000);
 });
 
-async function sendMessage(msg) {
+function sendMessage(msg) {
     pywebview.api.sendMessage(msg);
 };

@@ -39,4 +39,4 @@ if __name__ == "__main__":
     window = webview.create_window('Chat', "assets/index.html", width=1270, height=720, js_api=api, min_size=(300, 400))
     api.window = window
     api.client = client
-    webview.start(debug=True)
+    webview.start(debug=True, gui="mshtml")
