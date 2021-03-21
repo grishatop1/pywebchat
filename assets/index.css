@@ -319,4 +319,14 @@ h3 {
     padding: 5px 25px;
     margin-top: 15px;
     font-family: Arial, Helvetica, sans-serif;
+    background-color: white;
+    border: 1px solid black;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.alert-box button:hover {
+    color: white;
+    background-color: black;
 }
