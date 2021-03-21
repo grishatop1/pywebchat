@@ -1,3 +1,8 @@
+var ping = new Audio("ping.mp3");
+function playPing() {
+    ping.play()
+}
+
 function whenConnected() {
     var input = document.getElementById("msg-txt");
     input.addEventListener("keydown", ({key}) => {
@@ -61,6 +66,7 @@ async function connect() {
 
     pywebview.api.createConnection({"addr": ip, "username": username}).then(function(response){
         if (response == "success") {
+            setLoadingText("CONNECTED!");
             hideLoading();
             hideLogin();
             whenConnected();
@@ -90,10 +96,15 @@ function hideLoading() {
     }, 1000);
 }
 
+function setLoadingText(text) {
+    var loading = document.getElementsByClassName("loading")[0].querySelector("h1");
+    loading.innerHTML = text;
+}
+
 function hideLogin() {
     window.setTimeout(function() {
         var login_node = document.getElementsByClassName("login")[0];
-        login_node.style.display = "none";
+        document.body.removeChild(login_node)
     }, 1000);
 }
 
