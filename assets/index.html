@@ -45,10 +45,20 @@
         <div class="form">
             <input type="text" id="username" placeholder="Enter username">
             <input type="text" id="ip" placeholder="Enter IP address" value="192.168.0.33:25565">
-            <button onclick="connect()">Connect</button>
+            <button onclick="connect();">Connect</button>
         </div>
     </div>
 
+    <template class="alert-template">
+        <div class="alert">
+            <div class="alert-box">
+                <h4>Alert message goes here.</h4>
+                <button onclick="hideAlertMessage();">OK</button>
+            </div>
+        </div>
+    </template>
+    
+    <script src="alert.js"></script>
     <script src="script.js"></script>
 </body>
 </html>
