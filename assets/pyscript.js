@@ -9,5 +9,5 @@ window.addEventListener("pywebviewready", function() {
 });
 
 async function sendMessage(msg) {
-    pywebview.api.sendMessage(msg)
-}
+    pywebview.api.sendMessage(msg);
+};

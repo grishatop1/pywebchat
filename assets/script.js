@@ -1,13 +1,13 @@
 var input = document.getElementById("msg-txt");
 input.addEventListener("keydown", ({key}) => {
     if (key === "Enter") {
-        sendMessage(getValueFromInput())
-    }
+        sendMessage(getValueFromInput());
+    };
 });
 
 var sndbtn = document.getElementById("snd-btn");
 sndbtn.addEventListener("click", function(){
-    sendMessage(getValueFromInput())
+    sendMessage(getValueFromInput());
 });
 
 function getValueFromInput(clear=true) {
@@ -15,36 +15,36 @@ function getValueFromInput(clear=true) {
     data = msg.value;
     if (clear) {
         msg.value = "";
-    }
+    };
     return data;
-}
+};
 
 function addMessage(message, mine, date, sender="") {
     if (isEmpty(message)) return;
-    var log = document.getElementsByClassName("log")[0]
-    var box = document.getElementsByClassName("text-area")[0]
+    var log = document.getElementsByClassName("log")[0];
+    var box = document.getElementsByClassName("text-area")[0];
 
     var messagecontainer = document.createElement("div");
     if (mine == "true") {
         messagecontainer.className = "message-container message-mine";
     } else {
         messagecontainer.className = "message-container message-other";
-        var h4 = document.createElement("h4")
-        h4.innerHTML = sender
-        messagecontainer.appendChild(h4)
-    }
+        var h4 = document.createElement("h4");
+        h4.innerHTML = sender;
+        messagecontainer.appendChild(h4);
+    };
     
 
     var messagebox = document.createElement("div");
     messagebox.className = "message";
     messagebox.innerHTML = message;
 
-    messagecontainer.appendChild(messagebox)
+    messagecontainer.appendChild(messagebox);
     log.appendChild(messagecontainer);
 
     box.scrollTop = box.scrollHeight;
-}
+};
 
 function isEmpty(str) {
     return (!str || 0 === str.length);
-}
+};
