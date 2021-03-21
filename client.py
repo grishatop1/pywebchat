@@ -13,7 +13,12 @@ class Client:
 
     def connect(self):
         self.s = socket.socket()
-        self.s.connect(self.addr)
+        self.s.settimeout(5)
+        try:
+            self.s.connect(self.addr)
+        except socket.error:
+            return "Server not found. Try again."
+        self.s.settimeout(None)
         self.trans = Transfer(self.s)
         self.trans.send(self.username.encode())
         response = self.trans.recvData()

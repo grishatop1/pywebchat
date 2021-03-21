@@ -65,8 +65,8 @@ async function connect() {
             hideLogin();
             whenConnected();
         } else {
-            hideLoading();
             alert(response);
+            hideLoading();
         }
     });
 }
