@@ -36,11 +36,19 @@
 
 
     <div class="loading">
-        <h1>LOADING</h1>
+        <h1>CONNECTING</h1>
         <img src="loading.gif">
     </div>
 
+    <div class="login">
+        <h2>LOGIN</h2>
+        <div class="form">
+            <input type="text" id="username" placeholder="Enter username">
+            <input type="text" id="ip" placeholder="Enter IP address" value="192.168.0.33:25565">
+            <button onclick="connect()">Connect</button>
+        </div>
+    </div>
+
     <script src="script.js"></script>
-    <script src="pyscript.js"></script>
 </body>
 </html>
