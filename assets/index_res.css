@@ -1,0 +1,21 @@
+@media only screen and (max-width: 800px) {
+    .online-box {
+        display: none;
+    }
+    .column {
+        width: 95%;
+    }
+}
+
+@media only screen and (max-width: 600px) {
+    .message {
+        max-width: 100%;
+    }
+}
+
+@media only screen and (max-width: 400px) {
+    .text-area {
+        border-top-left-radius: 0px;
+        border-bottom-left-radius: 0px;
+    }
+}

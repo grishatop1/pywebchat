@@ -1,0 +1,236 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+
+html, body {
+    overflow-y: hidden;
+    height: 100%;
+    background: #FF69B4;
+    overflow-x:hidden;
+}
+
+h2 {
+    font-family: Arial, Helvetica, sans-serif;
+    text-align: center;
+    color: white;
+    font-size: 30px;
+    padding: 10px;
+}
+
+h3 {
+    font-family: sans-serif;
+    text-align: center;
+    color: white;
+    font-size: 15px;
+    padding: 10px;
+}
+
+.container {
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.column {
+    background: linear-gradient(53deg, rgba(72,0,255,1) 0%, rgba(252,70,70,1) 100%);    
+    border-radius: 12px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0px 0px 27px -7px rgba(0,0,0,0.75);
+    height: 95%;
+    margin: 10px;
+    transition: all 0.2s;
+}
+
+.chat-box {
+    width: 70%;
+}
+
+.chat-box .row {
+    width: 90%;
+    margin: 20px;
+}
+
+.text-area {
+    height: 70%;
+    background-color: rgba(198, 255, 255, 0.5);
+    border-top-left-radius: 50px;
+    border-bottom-left-radius: 50px;
+    overflow-y: scroll;
+    transition: border-radius 0.4s;
+}
+
+.log {
+    margin: 15px;
+}
+
+.input-area {
+    text-align: center;
+    position: relative;
+}
+
+.input-anim {
+    width: 100%;
+}
+
+.input-anim::after {
+    content: "";
+    display: block;
+    position: absolute;
+    width: 0%;
+    height: 5px;
+    background: rgb(34,193,195);
+    background: linear-gradient(123deg, rgba(34,193,195,1) 0%, rgba(223,39,200,1) 49%, rgba(253,149,45,1) 100%);
+    bottom: -7px;
+    border-radius: 5px;
+    left: 50%;
+    transform: translateX(-50%);
+    transition: all 0.3s ease; 
+}
+
+.input-area input {
+    font-family: sans-serif;
+    width: 80%;
+    background-color: white;
+    border: 1px solid gray;
+    border-radius: 6px;
+    padding: 10px;
+    outline: none;
+    transition: 0.2s;
+    position: relative;
+}
+
+.input-area input:focus + .input-anim::after {
+    width: 92%;
+}
+
+.input-area button {
+    position: relative;
+    font-family: Roboto, sans-serif;
+    box-shadow: 0px 0px 27px -7px rgba(0,0,0,0.75);
+    background: linear-gradient(90deg, rgba(253,29,218,1) 32%, rgba(69,137,252,1) 100%);
+    font-style: bold;
+    color: white;
+    width: 70px;
+    padding: 10px;
+    cursor: pointer;
+    border: none;
+    border-radius: 5px;
+    transition: 0.2s;
+    outline: none;
+    z-index: 1;
+    transition: all 0.5s ease;
+    margin: 5px;
+}
+
+.input-area button:hover {
+    background: linear-gradient(0deg, rgba(34,193,195,1) 0%, rgba(253,187,45,1) 100%);
+}
+
+.message-container {
+    display: block;
+    margin: 20px;
+}
+
+.message-container h4 {
+    font-family: Arial, Helvetica, sans-serif;
+    color: white;
+}
+
+.message-container h4::after {
+    content: ":";
+}
+
+.message {
+    display: inline-block;
+    font-family:Arial, Helvetica, sans-serif;
+    padding: 15px;
+    word-wrap: break-word;
+    max-width: 50%;
+    background-color: rgba(204, 204, 204, 0.62);
+    text-align: left;
+    position: relative;
+}
+
+.message-other {
+    text-align: left;
+}
+
+.message-mine {
+    text-align: right;
+}
+
+.message-mine .message {
+    background-color: rgba(127, 63, 191, 0.50);
+    border-top-left-radius: 10px;
+    border-bottom-left-radius: 10px;
+    border-bottom-right-radius: 10px;
+}
+
+.message-other .message {
+    background-color: rgba(255,255, 255, 0.20);
+    border-top-right-radius: 10px;
+    border-bottom-left-radius: 10px;
+    border-bottom-right-radius: 10px;
+}
+
+.message-other .message::after {
+    content: "";
+    display: block;
+    position: absolute;
+    width: 0;
+    height: 0;
+    border-style: solid;
+    border-width: 10px 17.3px 10px 0;
+    border-color: transparent rgba(255,255, 255, 0.20) transparent transparent;
+    right: 100%;
+    top: 0;
+}
+
+.message-mine .message::after {
+    content: "";
+    display: block;
+    position: absolute;
+    width: 0;
+    height: 0;
+    border-style: solid;
+    border-width: 10px 0 10px 17.3px;
+    border-color: transparent transparent transparent rgba(127, 63, 191, 0.50);
+    left: 100%;
+    top: 0;
+}
+
+.online-box {
+    width: 200px;
+    vertical-align: top;
+}
+
+.loading {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    display: block;
+    background-color: black;
+    z-index: 100;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    opacity: 1;
+    transition: opacity 1.5s;
+}
+
+.loading h1 {
+    color: white;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+.loading img {
+    height: 150px;
+}
