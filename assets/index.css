@@ -238,7 +238,7 @@ h3 {
     height: 100%;
     display: block;
     background-color: black;
-    z-index: 150;
+    z-index: 2000;
     display: none;
     align-items: center;
     justify-content: center;
@@ -258,15 +258,41 @@ h3 {
 
 .login {
     position: fixed;
-    display: flex;
     width: 100%;
     height: 100%;
     background: linear-gradient(53deg, rgba(37,3,124,1) 0%, rgba(117,0,0,1) 100%);
-    z-index: 100;
+    z-index: 1000;
     top: 0;
+    display: flex;
     align-items: center;
     justify-content: center;
     flex-direction: column;
+}
+
+.login-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    vertical-align: middle;
+    position: relative;
+    bottom: 25px;
+}
+
+.login-bottom {
+    display: block;
+    position: absolute;
+    width: 100%;
+    box-shadow: 0px 0px 15px 0px rgba(0,0,0,0.45);
+    bottom: 0;
+}
+
+.login-bottom span {
+    color: white;
+    font-family: Arial, Helvetica, sans-serif;
+    font-weight: 400;
+    display: block;
+    padding: 15px;
 }
 
 .login .form {
@@ -315,7 +341,7 @@ h3 {
     height: 100%;
     display: block;
     background-color: rgba(0,0,0,0.7);
-    z-index: 9999;
+    z-index: 2000;
     display: flex;
     align-items: center;
     justify-content: center;
