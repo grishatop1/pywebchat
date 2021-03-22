@@ -300,7 +300,7 @@ h3 {
     align-items: center;
     justify-content: center;
     opacity: 0;
-    transition: opacity 1s;
+    transition: opacity 0.6s;
 }
 
 .alert-box {

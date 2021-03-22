@@ -12,5 +12,7 @@ function showAlertMessage(message) {
     document.body.appendChild(alert_frag);
     var alert_node = document.getElementsByClassName("alert")[0];
     alert_node.querySelector("h4").innerHTML = message
-    alert_node.style.opacity = 1;
+    window.setTimeout(function() {
+        alert_node.style.opacity = 1;
+    }, 100);
 }
