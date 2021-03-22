@@ -35,7 +35,7 @@ class Client:
 
     def disconnect(self):
         self.trans.send(b"drop")
-        self.s.close()
+        self.connected = False
 
     def sendMessage(self, content):
         data = {
@@ -65,6 +65,8 @@ class Client:
                         "false", 
                         data["date"],
                         data["sender"])
-
+        else:
+            return
+            
         self.api.disconnection("Connection lost.")
         
