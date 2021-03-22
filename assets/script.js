@@ -67,7 +67,7 @@ function connect() {
 
     pywebview.api.createConnection({"addr": ip, "username": username}).then(function(response){
         if (response == "success") {
-            setLoadingText("CONNECTED!");
+            setLoadingText("CONNECTED");
             hideLoading();
             hideLogin();
             whenConnected();
