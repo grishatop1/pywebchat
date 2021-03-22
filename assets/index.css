@@ -43,12 +43,32 @@ h3 {
     justify-content: center;
     box-shadow: 0px 0px 27px -7px rgba(0,0,0,0.75);
     height: 95%;
-    margin: 10px;
+    margin: 7px;
     transition: all 0.2s;
 }
 
+.panel-column {
+    max-width: 65px;
+    min-width: 65px;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    flex-direction: column;
+}
+
+.panel-column img {
+    height: 30px;
+    cursor: pointer;
+    padding: 20px;
+    transition: all 0.2s ease;
+}
+
+.panel-column img:hover {
+    height: 32px;
+}
+
 .chat-box {
-    width: 70%;
+    width: 100%;
 }
 
 .chat-box .row {
@@ -207,7 +227,7 @@ h3 {
 }
 
 .online-box {
-    width: 200px;
+    min-width: 200px;
     vertical-align: top;
 }
 

@@ -56,7 +56,8 @@ function isEmpty(str) {
     return (!str || 0 === str.length);
 }
 
-async function connect() {
+function connect() {
+    setLoadingText("CONNECTING");
     showLoading();
     var username_node = document.getElementById("username");
     var ip_node = document.getElementById("ip");
@@ -75,6 +76,22 @@ async function connect() {
             hideLoading();
         }
     });
+}
+
+function disconnect() {
+    setLoadingText("DISCONNECTED");
+    showLoading();
+    showLogin();
+    hideLoading();
+    pywebview.api.dropConnection();
+}
+
+function disconnection(message) {
+    setLoadingText("CONNECTION LOST");
+    showLoading();
+    showLogin();
+    showAlertMessage(message)
+    hideLoading();
 }
 
 function showLoading() {
@@ -101,10 +118,17 @@ function setLoadingText(text) {
     loading.innerHTML = text;
 }
 
+function showLogin() {
+    window.setTimeout(function() {
+        var login_node = document.getElementsByClassName("login")[0];
+        login_node.style.display = "flex";
+    }, 1000);
+}
+
 function hideLogin() {
     window.setTimeout(function() {
         var login_node = document.getElementsByClassName("login")[0];
-        document.body.removeChild(login_node)
+        login_node.style.display = "none";
     }, 1000);
 }
 

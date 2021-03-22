@@ -2,9 +2,6 @@
     .online-box {
         display: none;
     }
-    .column {
-        width: 95%;
-    }
 }
 
 @media only screen and (max-width: 600px) {
@@ -17,5 +14,8 @@
     .text-area {
         border-top-left-radius: 0px;
         border-bottom-left-radius: 0px;
+    }
+    .panel-column {
+        display: none;
     }
 }

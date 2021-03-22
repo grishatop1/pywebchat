@@ -11,7 +11,6 @@ class Transfer:
 		self.header = 12
 		self.buffer = 1024 * 2
 		self.timeout = 5
-		self.connected = True
 		threading.Thread(target=self.sendDataLoop, daemon=True).start()
 
 	def appendHeader(self, data):

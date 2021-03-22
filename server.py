@@ -2,6 +2,7 @@ import socket
 import threading
 import pickle
 import datetime
+import atexit
 from transfer import Transfer
 
 class Server:

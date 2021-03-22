@@ -26,6 +26,13 @@ class Api:
         else:
             return result
 
+    def dropConnection(self):
+        self.client.disconnect()
+
+    def disconnection(self, message):
+        js = f"disconnection('{message}');"
+        self.window.evaluate_js(js)
+
     def addMessage(self, content, mine, date, sender):
         js = fr"""
         
