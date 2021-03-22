@@ -18,13 +18,16 @@ class Client:
             self.s.connect(self.addr)
         except socket.error:
             return "Server not found. Try again."
-        self.s.settimeout(None)
+        
         self.trans = Transfer(self.s)
         self.trans.send(self.username.encode())
         response = self.trans.recvData()
+        if not response:
+            return "Server not responding."
         if response == b"in-use":
             return "Username already in use."
         if response == b"success":
+            self.s.settimeout(None)
             self.connected = True
             self.s.ioctl(socket.SIO_KEEPALIVE_VALS, (1, 5000, 3000))
             threading.Thread(target=self.mainThread, daemon=True).start()
