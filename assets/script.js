@@ -1,20 +1,10 @@
-var ping = new Audio("ping.mp3");
-function playPing() {
-    ping.play()
+//MESSAGE FUNCTIONS
+function isEmpty(str) {
+    return (!str || 0 === str.length);
 }
 
-function whenConnected() {
-    var input = document.getElementById("msg-txt");
-    input.addEventListener("keydown", ({key}) => {
-        if (key === "Enter") {
-            sendMessage(getValueFromInput())
-        }
-    });
-
-    var sndbtn = document.getElementById("snd-btn");
-    sndbtn.addEventListener("click", function(){
-        sendMessage(getValueFromInput())
-    });
+function sendMessage(msg) {
+    pywebview.api.sendMessage(msg)
 }
 
 function getValueFromInput(clear=true) {
@@ -52,10 +42,7 @@ function addMessage(message, mine, date, sender="") {
     box.scrollTop = box.scrollHeight;
 }
 
-function isEmpty(str) {
-    return (!str || 0 === str.length);
-}
-
+//CONNECTION EVENTS
 function connect() {
     setLoadingText("CONNECTING");
     showLoading();
@@ -78,6 +65,20 @@ function connect() {
     });
 }
 
+function whenConnected() {
+    var input = document.getElementById("msg-txt");
+    input.addEventListener("keydown", ({key}) => {
+        if (key === "Enter") {
+            sendMessage(getValueFromInput())
+        }
+    });
+
+    var sndbtn = document.getElementById("snd-btn");
+    sndbtn.addEventListener("click", function(){
+        sendMessage(getValueFromInput())
+    });
+}
+
 function disconnect() {
     setLoadingText("DISCONNECTED");
     showLoading();
@@ -94,6 +95,9 @@ function disconnection(message) {
     hideLoading();
 }
 
+
+
+//LOADING PAGE
 function showLoading() {
     var loading = document.getElementsByClassName("loading")[0];
     loading.style.display = "flex";
@@ -118,6 +122,18 @@ function setLoadingText(text) {
     loading.innerHTML = text;
 }
 
+
+//LOGIN PAGE
+let inputs = document.getElementsByClassName("login-values")
+
+for (let i in inputs) {
+    inputs[i].addEventListener("keydown", ({key}) => {
+        if (key === "Enter") {
+            connect();
+        }
+    });
+}
+
 function showLogin() {
     window.setTimeout(function() {
         var login_node = document.getElementsByClassName("login")[0];
@@ -130,8 +146,4 @@ function hideLogin() {
         var login_node = document.getElementsByClassName("login")[0];
         login_node.style.display = "none";
     }, 1000);
-}
-
-async function sendMessage(msg) {
-    pywebview.api.sendMessage(msg)
 }
