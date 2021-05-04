@@ -5,10 +5,10 @@ function switchTheme() {
     if (currentTheme == "light") {
         document.documentElement.setAttribute('data-theme', 'dark');
         currentTheme = "dark";
-        imgTheme.src = "sun.png";
+        imgTheme.src = "media/sun.png";
     } else {
         document.documentElement.setAttribute('data-theme', 'light');
         currentTheme = "light";
-        imgTheme.src = "moon.png";
+        imgTheme.src = "media/moon.png";
     }
 }

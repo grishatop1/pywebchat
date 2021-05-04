@@ -4,7 +4,7 @@ function isEmpty(str) {
 }
 
 function sendMessage(msg) {
-    pywebview.api.sendMessage(msg)
+    eel.sendMessage(msg)
 }
 
 function getValueFromInput(clear=true) {
@@ -16,6 +16,7 @@ function getValueFromInput(clear=true) {
     return data;
 }
 
+eel.expose(addMessage);
 function addMessage(message, mine, date, sender="") {
     if (isEmpty(message)) return;
     var log = document.getElementsByClassName("log")[0]
@@ -43,7 +44,7 @@ function addMessage(message, mine, date, sender="") {
 }
 
 //CONNECTION EVENTS
-function connect() {
+async function connect() {
     setLoadingText("CONNECTING");
     showLoading();
     var username_node = document.getElementById("username");
@@ -52,30 +53,30 @@ function connect() {
     const username = username_node.value;
     const ip = ip_node.value;
 
-    pywebview.api.createConnection({"addr": ip, "username": username}).then(function(response){
-        if (response == "success") {
-            setLoadingText("CONNECTED");
-            hideLoading();
-            hideLogin();
-            whenConnected();
-        } else {
-            showAlertMessage(response);
-            hideLoading();
-        }
-    });
+    
+    response = await eel.createConnection({"addr": ip, "username": username})();
+    if (response == "success") {
+        setLoadingText("CONNECTED");
+        hideLoading();
+        hideLogin();
+        whenConnected();
+    } else {
+        showAlertMessage(response);
+        hideLoading();
+    }
 }
 
 function whenConnected() {
     var input = document.getElementById("msg-txt");
     input.addEventListener("keydown", ({key}) => {
         if (key === "Enter") {
-            sendMessage(getValueFromInput())
+            eel.sendMessage(getValueFromInput())
         }
     });
 
     var sndbtn = document.getElementById("snd-btn");
     sndbtn.addEventListener("click", function(){
-        sendMessage(getValueFromInput())
+        eel.sendMessage(getValueFromInput())
     });
 }
 
@@ -84,9 +85,10 @@ function disconnect() {
     showLoading();
     showLogin();
     hideLoading();
-    pywebview.api.dropConnection();
+    eel.dropConnection();
 }
 
+eel.expose(disconnection);
 function disconnection(message) {
     setLoadingText("CONNECTION LOST");
     showLoading();

@@ -1,51 +1,56 @@
-import webview
+import eel
 import threading
 import random
 from client import Client
 
+@eel.expose
+def createConnection(data):
+	return api.createConnection(data)
+
+@eel.expose
+def sendMessage(content):
+	api.sendMessage(content)
+
+@eel.expose
+def dropConnection():
+	api.dropConnection()
+
 class Api:
-    def __init__(self):
-        self.window = None
-        self.client = None
+	def __init__(self):
+		self.window = None
+		self.client = None
 
-    def createConnection(self, data):
-        addr, username = data["addr"], data["username"]
-        try:
-            ip, port = addr.split(":")
-            port = int(port)
-        except:
-            return "IP address is invalid"
+	def createConnection(self, data):
+		addr, username = data["addr"], data["username"]
+		try:
+			ip, port = addr.split(":")
+			port = int(port)
+		except:
+			return "IP address is invalid"
 
-        if not username:
-            return "Username can not be empty"
+		if not username:
+			return "Username can not be empty"
 
-        self.client = Client((ip,port), self, username)
-        result = self.client.connect()
-        if result == True:
-            return "success"
-        else:
-            return result
+		self.client = Client((ip,port), self, username)
+		result = self.client.connect()
+		if result == True:
+			return "success"
+		else:
+			return result
 
-    def dropConnection(self):
-        self.client.disconnect()
+	def dropConnection(self):
+		self.client.disconnect()
 
-    def disconnection(self, message):
-        js = f"disconnection('{message}');"
-        self.window.evaluate_js(js)
+	def disconnection(self, message):
+		eel.disconnection(message)
 
-    def addMessage(self, content, mine, date, sender):
-        js = fr"""
-        
-        addMessage('{content}', '{mine}', '{date}', '{sender}');
-        
-        """
-        self.window.evaluate_js(js)
+	def addMessage(self, content, mine, date, sender):
+		eel.addMessage(content, mine, date, sender)
 
-    def sendMessage(self, content):
-        self.client.sendMessage(content)
+	def sendMessage(self, content):
+		self.client.sendMessage(content)
 
 if __name__ == "__main__":
-    api = Api()
-    window = webview.create_window('Chat', "assets/index.html", width=1270, height=720, js_api=api, min_size=(300, 400))
-    api.window = window
-    webview.start(gui="edgehtml")
+	api = Api()
+	eel.init('assets')
+	eel.start('index.html', size=(1270,720))

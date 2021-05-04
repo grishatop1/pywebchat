@@ -5,10 +5,8 @@
 
 ___
 ### Usage
-Before you run `main.py` file, you need to get **pywebview** with command
+Before you run `main.py` file, you need to get ~~pywebview~~ **eel** with command
 ```
-pip install pywebview
+pip install eel
 ```
 Or run installer which you can download from [releases](https://github.com/grishatop1/pywebchat/releases) tab.
-
-***NOTE:*** If you are using Windows 7 or 8 you will need to download Edge web driver, you can get it from [here](https://developer.microsoft.com/en-us/microsoft-edge/webview2/#download-section).
