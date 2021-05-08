@@ -50,7 +50,20 @@ class Api:
 	def sendMessage(self, content):
 		self.client.sendMessage(content)
 
+def is_port_in_use(port):
+	import socket
+	with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as s:
+		s.settimeout(1)
+		return s.connect_ex(('localhost', port)) == 0
+
+def get_random_port():
+	while True:
+		port = random.randint(10000, 65000)
+		if not is_port_in_use(port):
+			return port
+		print("PORT IN USE!")
+
 if __name__ == "__main__":
 	api = Api()
 	eel.init('assets')
-	eel.start('index.html', size=(1270,720))
+	eel.start('index.html', size=(1270,720), port=get_random_port())
