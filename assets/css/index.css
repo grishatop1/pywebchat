@@ -91,6 +91,7 @@ h3 {
 .chat-box .row {
     width: 90%;
     margin: 20px;
+    position: relative;
 }
 
 .text-area {
@@ -99,11 +100,14 @@ h3 {
     border-top-left-radius: 50px;
     border-bottom-left-radius: 50px;
     overflow-y: scroll;
+    overflow-x: hidden;
     transition: border-radius 0.4s;
 }
 
 .log {
-    margin: 15px;
+    margin: 10px;
+    width: calc(100% - 10px);
+    position: absolute;
 }
 
 .input-area {
