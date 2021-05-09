@@ -1,3 +1,6 @@
+//CONTEXT MENU DISABLE
+document.oncontextmenu = new Function("return false;")
+
 //MESSAGE FUNCTIONS
 function isEmpty(str) {
     return (!str || 0 === str.length);
